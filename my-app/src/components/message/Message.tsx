@@ -65,6 +65,10 @@ import Loading from '../loading/Loading'
           }
         };
       }, []);
+
+      useEffect(() => {
+        divRef.current ?. scrollIntoView({behavior: "smooth"})
+    }, [])
     
       
 

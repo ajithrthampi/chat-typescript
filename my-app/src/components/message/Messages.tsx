@@ -18,12 +18,12 @@ const Messages = ({ message }: MessagesProps) => {
    
     <>
       <div className='  z-0 '
-      // ref={ref}
+      
       >
         <div className="flex-1 mx-2   justify-between flex flex-col">
 
           <div id="messages" className="flex flex-col  space-y-4 p-2.5   scrolling-touch"
-        
+        // ref={ref}
           >
             {
               message.message ? <>
