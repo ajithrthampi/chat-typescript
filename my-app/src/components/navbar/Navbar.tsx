@@ -10,31 +10,55 @@ import axios from 'axios';
 const Navbar = () => {
 
   const [show, setShow] = useState(false)
-
   const [navData, setNavData] = useState<any>([])
+  const [image, setImage] = useState<any>([])
 
- // Api calling
+  // Api calling
   useEffect(() => {
     const apiHeader = () => {
       axios.get('https://qa.corider.in/assignment/chat?page=0')
         .then((res) => {
           //  console.log("data",res.data);
           setNavData(res.data)
+          setImage(res.data?.chats)
         }).catch((err) => {
           console.log(err);
-  
+
         })
     }
     apiHeader()
 
   }, [])
 
-  // console.log("Logged data", (navData) ); 
+  // console.log("Logged data", image);
 
   //ShowModal
   const handleModal = () => {
     setShow(!show)
   }
+
+  //filter
+  const frequency: { [key: string]: number } = {};
+  const duplicates: any = [];
+  const nonDuplicates: any = [];
+
+  image.forEach((item: any) => {
+    const fieldValue: any = item.sender?.image;
+    // console.log(fieldValue);
+    frequency[fieldValue] = (frequency[fieldValue] || 0) + 1;
+
+    if (frequency[fieldValue] === 2) {
+      duplicates.push(fieldValue);
+    } else if (frequency[fieldValue] === 1) {
+      nonDuplicates.push(fieldValue);
+    }
+  })
+
+  // console.log("duplicates", duplicates);
+  // console.log("nonDuplicates", nonDuplicates);
+
+
+
 
   return (
     <div className=' absolute top-0 right-0 left-0 '>
@@ -48,18 +72,31 @@ const Navbar = () => {
             <h1 className='text-2xl font-bold font-Mulish text-[#141E0D]'>{navData?.name}</h1>
 
           </div>
-          
-            <div className='text-2xl font-thin text-[#141E0D]'>
-              <BiEdit />
-            </div>
-     
+
+          <div className='text-2xl font-thin text-[#141E0D]'>
+            <BiEdit />
+          </div>
+
         </div>
         {/* Image section */}
         <div>
           <div className='flex pt-2 gap-4 items-center justify-between'>
             <div className='flex items-center gap-4'>
               <div>
-                <img className='w-12 h-12 object-cover rounded-full' src="https://images.pexels.com/photos/34534/people-peoples-homeless-male.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                {/* <img className='w-12 h-12 object-cover rounded-full' src="https://images.pexels.com/photos/34534/people-peoples-homeless-male.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /> */}
+                <div className="fle items-center justify-center ">
+                  <div className="flex items-center justify-center">
+                    <div className="fle h-12 w-12 items-center justify-center rounded-full bg-gray-200 overflow-hidden">
+                      <div className="grid grid-cols-4 overflow-hidde">
+                        {
+                          duplicates.map((item: any, index: number) => (
+                            <img key={index} src={item} className={`h-6 w-6 col-span-2`} />
+                          ))
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className='flex flex-col items-start '>
                 <h3 className='text-gray-600 font-Mulish '>From <span className=' text-[#141E0D] font-bold  text-[19px]'>{navData?.from}</span></h3>
@@ -68,46 +105,46 @@ const Navbar = () => {
             </div>
             <div className='text-3xl relative' >
               <div onClick={handleModal}>
-              <BiDotsVerticalRounded />
+                <BiDotsVerticalRounded />
               </div>
               {
-              show &&
-              <div>
-                <div className='absolute z-30 bg-[#FFFFFF] right-0  top-8  rounded-lg py-2 drop-shadow-md'>
-                  <div className='w-40'>
-                    <div className=' '>
-                      <div className='flex items-center justify-start gap-3 pl-2'>
-                        <div className='text-lg'>
-                          <FiUsers />
+                show &&
+                <div>
+                  <div className='absolute z-30 bg-[#FFFFFF] right-0  top-8  rounded-lg py-2 drop-shadow-md'>
+                    <div className='w-40'>
+                      <div className=' '>
+                        <div className='flex items-center justify-start gap-3 pl-2'>
+                          <div className='text-lg'>
+                            <FiUsers />
+                          </div>
+                          <h4 className='font-Mulish text-sm text-[#141E0D]  '>Members</h4>
                         </div>
-                        <h4 className='font-Mulish text-sm text-[#141E0D]  '>Members</h4>
+                        <hr className="h-px my-3  bg-gray-200 border-0 dark:bg-gray-700"></hr>
                       </div>
-                      <hr className="h-px my-3  bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                    </div>
 
-                    <div className=' '>
-                      <div className='flex items-center justify-start gap-3 pl-2'>
-                        <div className='text-lg'>
-                          <HiOutlinePhone />
+                      <div className=' '>
+                        <div className='flex items-center justify-start gap-3 pl-2'>
+                          <div className='text-lg'>
+                            <HiOutlinePhone />
+                          </div>
+                          <h4 className='font-Mulish text-sm text-[#141E0D] '>Share Numbers</h4>
                         </div>
-                        <h4 className='font-Mulish text-sm text-[#141E0D] '>Share Numbers</h4>
+                        <hr className="h-px my-3  bg-gray-200 border-0 dark:bg-gray-700"></hr>
                       </div>
-                      <hr className="h-px my-3  bg-gray-200 border-0 dark:bg-gray-700"></hr>
-                    </div>
 
-                    <div className=' '>
-                      <div className='flex items-center justify-start gap-3 pl-2'>
-                        <div className='text-lg'>
-                          <GoReport />
+                      <div className=' '>
+                        <div className='flex items-center justify-start gap-3 pl-2'>
+                          <div className='text-lg'>
+                            <GoReport />
+                          </div>
+                          <h4 className='font-Mulish text-sm text-[#141E0D] '>Report</h4>
                         </div>
-                        <h4 className='font-Mulish text-sm text-[#141E0D] '>Report</h4>
+
                       </div>
-                    
                     </div>
                   </div>
                 </div>
-              </div>
-            }
+              }
             </div>
           </div>
         </div>

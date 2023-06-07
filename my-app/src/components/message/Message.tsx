@@ -1,7 +1,7 @@
     import React, { useEffect, useRef, useState } from 'react'
     import Messages from './Messages'
     import axios from 'axios'
-import Loading from '../loading/Loading'
+    import Loading from '../loading/Loading'
   
     const Message = () => {
 
@@ -17,13 +17,17 @@ import Loading from '../loading/Loading'
           axios
             .get(`https://qa.corider.in/assignment/chat?page=${page}`)
             .then((res) => {
+              // console.log("Data",res.data?.chats);
               if (page === 0) {
                 setData([...res.data.chats, ...data]);
                 setLoading(false);
+                
+                
                 if (divRef.current) {
                   divRef.current.scrollTop = divRef.current.scrollHeight; 
                 }
               } else {
+                
                 const newData = [...res.data.chats, ...data];
                 setData(newData);
                 setLoading(false);
