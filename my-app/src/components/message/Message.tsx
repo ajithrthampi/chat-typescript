@@ -75,7 +75,7 @@ import Loading from '../loading/Loading'
       return (
         <>
           <div>
-            <div className=' overflow-scroll z-0 absolute right-0 left-0 top-[135px] bottom-20 '
+            <div className=' overflow-y-scroll z-0 absolute right-0 left-0 top-[135px] bottom-20 -scrollbar scrollbar-thumb-gray-300 scrollbar-track-[#7c7c78] scrollbar-thin '
               ref={divRef}
             >
               {loading && <div className='text-2xl flex justify-center items-center'><Loading /></div>}

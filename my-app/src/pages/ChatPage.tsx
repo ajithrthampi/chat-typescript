@@ -6,7 +6,7 @@ import Message from '../components/message/Message'
 const ChatPage = () => {
   return (
     <>
-      <div className='  lg:absolute right-80 left-80'>
+      <div className='md:h-screen  xl:absolute right-[500px] left-[500px]'>
         <Navbar />
         <Message />
         <Input />
