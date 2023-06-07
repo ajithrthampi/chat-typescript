@@ -6,7 +6,7 @@ import Message from '../components/message/Message'
 const ChatPage = () => {
   return (
     <>
-      <div className='h-screen bg-[#FAF9F4] lg:absolute right-80 left-80'>
+      <div className='  lg:absolute right-80 left-80'>
         <Navbar />
         <Message />
         <Input />

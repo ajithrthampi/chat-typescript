@@ -7,14 +7,18 @@ interface MessagesProps {
 
 const Messages = ({ message }: MessagesProps) => {
 
+  const ref = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    ref.current ?. scrollIntoView({behavior: "smooth"})
+}, [])
 
   return (
 
    
     <>
       <div className='  z-0 '
-    
+      // ref={ref}
       >
         <div className="flex-1 mx-2   justify-between flex flex-col">
 

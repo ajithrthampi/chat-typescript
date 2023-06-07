@@ -7,6 +7,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* body{
+  background-color: #FAF9F4;
+}
 
 @layer utilities {
     @variants responsive {
