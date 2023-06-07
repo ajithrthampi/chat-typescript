@@ -22,7 +22,7 @@ const Messages = ({ message }: MessagesProps) => {
       >
         <div className="flex-1 mx-2   justify-between flex flex-col">
 
-          <div id="messages" className="flex flex-col  space-y-4 p-2.5   overflow-y-none scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+          <div id="messages" className="flex flex-col  space-y-4 p-2.5   scrolling-touch">
             {
               message.message ? <>
                 <div className=" ">
