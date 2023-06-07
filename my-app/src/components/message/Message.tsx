@@ -53,18 +53,18 @@ import Loading from '../loading/Loading'
         }
       };
 
-      // useEffect(() => {
-      //   if (divRef.current) {
-      //     console.log("Current");
+      useEffect(() => {
+        if (divRef.current) {
+          console.log("Current");
           
-      //     divRef.current.addEventListener('scroll', handleScroll);
-      //   }
-      //   return () => {
-      //     if (divRef.current) {
-      //       divRef.current.removeEventListener('scroll', handleScroll);
-      //     }
-      //   };
-      // }, []);
+          divRef.current.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+          if (divRef.current) {
+            divRef.current.removeEventListener('scroll', handleScroll);
+          }
+        };
+      }, []);
     
       
 
