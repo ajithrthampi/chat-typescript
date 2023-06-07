@@ -7,8 +7,6 @@ interface MessagesProps {
 
 const Messages = ({ message }: MessagesProps) => {
 
-  // console.log("message", message);
-
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
