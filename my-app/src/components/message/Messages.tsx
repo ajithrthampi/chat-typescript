@@ -18,7 +18,7 @@ const Messages = ({ message }: MessagesProps) => {
    
     <>
       <div className='  z-0 '
-    
+    ref={ref}
       >
         <div className="flex-1 mx-2   justify-between flex flex-col">
 
