@@ -21,7 +21,7 @@ const Message = () => {
             setData([...res.data.chats, ...data]);
             setLoading(false);
             if (divRef.current) {
-              divRef.current.scrollTop = divRef.current.scrollHeight; // Scroll to bottom during initial rendering
+              divRef.current.scrollTop = divRef.current.scrollHeight; 
             }
           } else {
             const newData = [...res.data.chats, ...data];
@@ -29,14 +29,11 @@ const Message = () => {
             setLoading(false);
             if (divRef.current) {
               const newMessageHeight =  divRef.current.scrollHeight - (divRef.current.offsetHeight * page);
-              console.log("scrollHeight",divRef.current.scrollHeight);
-              console.log("offsetHeight",(divRef.current.offsetHeight * page));
-              console.log('newMessageHeight',newMessageHeight);
-              
+             
               
               divRef.current.scrollTo({ top: newMessageHeight, behavior: 'auto' });
 
-              console.log(newMessageHeight);
+            
               
             }
           }
@@ -64,6 +61,8 @@ const Message = () => {
 
   useEffect(() => {
     if (divRef.current) {
+      console.log("Current");
+      
       divRef.current.addEventListener('scroll', handleScroll);
     }
     return () => {
