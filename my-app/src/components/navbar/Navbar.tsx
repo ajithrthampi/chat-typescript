@@ -41,11 +41,11 @@ const Navbar = () => {
     const fieldValue: any = item.sender?.image;
     resultArray.push(fieldValue);
   });
-  console.log("resultArray", resultArray);
+
 
   //Sorted image Array
   const sortedArray: number[] = Array.from(new Set(resultArray)).sort();
-  console.log("sortedArray", sortedArray);
+
 
   return (
     <div className=' absolute top-0 right-0 left-0 '>

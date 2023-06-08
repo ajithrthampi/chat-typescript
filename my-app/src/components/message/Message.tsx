@@ -17,7 +17,7 @@
           axios
             .get(`https://qa.corider.in/assignment/chat?page=${page}`)
             .then((res) => {
-              // console.log("Data",res.data?.chats);
+              
               if (page === 0) {
                 setData([...res.data.chats, ...data]);
                 setLoading(false);
@@ -59,7 +59,7 @@
 
       useEffect(() => {
         if (divRef.current) {
-          console.log("Current");
+          
           
           divRef.current.addEventListener('scroll', handleScroll);
         }
