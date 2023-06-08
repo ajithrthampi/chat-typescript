@@ -13,6 +13,7 @@ const Navbar = () => {
   const [navData, setNavData] = useState<any>([])
   const [image, setImage] = useState<any>([])
 
+
   // Api calling
   useEffect(() => {
     const apiHeader = () => {
@@ -21,16 +22,13 @@ const Navbar = () => {
           //  console.log("data",res.data);
           setNavData(res.data)
           setImage(res.data?.chats)
+
         }).catch((err) => {
           console.log(err);
-
         })
     }
     apiHeader()
-
   }, [])
-
-  // console.log("Logged data", image);
 
   //ShowModal
   const handleModal = () => {
@@ -38,27 +36,16 @@ const Navbar = () => {
   }
 
   //filter
-  const frequency: { [key: string]: number } = {};
-  const duplicates: any = [];
-  const nonDuplicates: any = [];
-
+  const resultArray: any[] = [];
   image.forEach((item: any) => {
     const fieldValue: any = item.sender?.image;
-    // console.log(fieldValue);
-    frequency[fieldValue] = (frequency[fieldValue] || 0) + 1;
+    resultArray.push(fieldValue);
+  });
+  console.log("resultArray", resultArray);
 
-    if (frequency[fieldValue] === 2) {
-      duplicates.push(fieldValue);
-    } else if (frequency[fieldValue] === 1) {
-      nonDuplicates.push(fieldValue);
-    }
-  })
-
-  // console.log("duplicates", duplicates);
-  // console.log("nonDuplicates", nonDuplicates);
-
-
-
+  //Sorted image Array
+  const sortedArray: number[] = Array.from(new Set(resultArray)).sort();
+  console.log("sortedArray", sortedArray);
 
   return (
     <div className=' absolute top-0 right-0 left-0 '>
@@ -85,13 +72,26 @@ const Navbar = () => {
               <div>
                 {/* <img className='w-12 h-12 object-cover rounded-full' src="https://images.pexels.com/photos/34534/people-peoples-homeless-male.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" /> */}
                 <div className="fle items-center justify-center ">
-                  <div className="flex items-center justify-center">
+                  <div className="fle items-center justify-center">
                     <div className="fle h-12 w-12 items-center justify-center rounded-full bg-gray-200 overflow-hidden">
-                      <div className="grid grid-cols-4 overflow-hidde">
+                      <div className={` ${sortedArray.length >= 4 ? 'grid grid-cols-4' : ' flex flex-wrap'} `}>
                         {
-                          duplicates.map((item: any, index: number) => (
-                            <img key={index} src={item} className={`h-6 w-6 col-span-2`} />
-                          ))
+                          sortedArray.length > 3 ?
+                            <>
+                              {
+                                sortedArray.map((item: any, index: number) => (
+                                  <img key={index} src={item} className='h-6 w-6 col-span-2 object-cover' />
+                                ))
+                              }
+                            </>
+                            :
+                            <>
+                              {
+                                sortedArray.map((item: any, index: number) => (
+                                  <img key={index} src={item} className='h-6 w-6  flex-grow object-cover' />
+                                ))
+                              }
+                            </>
                         }
                       </div>
                     </div>

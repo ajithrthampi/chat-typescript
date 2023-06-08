@@ -59,7 +59,7 @@ const Messages = ({ message }: MessagesProps) => {
                   <div className="flex items-end justify-end">
                     <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                       <div>  <span className="px-2 py-3 rounded-xl inline-block rounded-br-none bg-[#1C63D5] text-white shadow-md font-Mulish text-sm ">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, qui quos libero neque harum voluptatibus
+                       {message?.message}
                       </span>
 
                         <div>
